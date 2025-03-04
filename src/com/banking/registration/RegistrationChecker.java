@@ -9,13 +9,13 @@ public class RegistrationChecker {
     private UserProfileManager profileManager;
 
     public boolean checkUserExists(String nicPassport, String accountNumber) {
-        // System.out.println("Checking if user exists with NIC/Passport: " + nicPassport + " and Account: " + accountNumber);
-        // return dbManager.checkUserExists(nicPassport, accountNumber);
+        System.out.println("Checking if user exists with NIC/Passport: " + nicPassport + " and Account: " + accountNumber);
+        int userExists =  dbManager.executeQuery("Checking Whether User Already Exists[" + nicPassport + "|"+ accountNumber + "]");
         return true;
     }
 
-    // public User getUserDetailsIfRegistered(String nicPassport) {
-    //     System.out.println("Fetching user details for NIC/Passport: " + nicPassport);
-    //     return profileManager.getUserByNicPassport(nicPassport);
-    // }
+    public User getUserDetailsIfRegistered(String nicPassport) {
+        System.out.println("Fetching user details for NIC/Passport: " + nicPassport);
+        return profileManager.getUserByNicPassport(nicPassport);
+    }
 }

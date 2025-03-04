@@ -1,4 +1,7 @@
 package com.banking.observer;
 
-public class UserStatusObserver {
+import com.banking.domain.User;
+
+public interface UserStatusObserver {
+    void update(User user, String oldStatus, String newStatus);
 }
