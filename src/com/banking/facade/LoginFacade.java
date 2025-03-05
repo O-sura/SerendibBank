@@ -49,4 +49,25 @@ public class LoginFacade {
     public void resetPassword(String token, String newPassword) {
         System.out.println("Resetting password with token: " + token);
     }
+
+    // Setter methods for dependency injection
+    public void setAuthService(AuthenticationService authService) {
+        this.authService = authService;
+    }
+    
+    public void setTfaManager(TwoFactorAuthManager tfaManager) {
+        this.tfaManager = tfaManager;
+    }
+    
+    public void setSecurityManager(SecurityManager securityManager) {
+        this.securityManager = securityManager;
+    }
+    
+    public void setDashboardProvider(DashboardProvider dashboardProvider) {
+        this.dashboardProvider = dashboardProvider;
+    }
+    
+    public void setPasswordResetManager(PasswordResetManager passwordResetManager) {
+        this.passwordResetManager = passwordResetManager;
+    }
 }

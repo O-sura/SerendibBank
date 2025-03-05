@@ -1,7 +1,7 @@
 package com.banking.service;
 
 public class TermsAndConditionsProvider {
-    private String termsUrl;
+    private String termsUrl = "https://serandib.com/terms";;
     private String termsContent;
 
     public String getTermsAndConditions() {
@@ -21,5 +21,9 @@ public class TermsAndConditionsProvider {
     public boolean isLatestVersion() {
         System.out.println("Checking if terms are the latest version...");
         return true;
+    }
+
+    public void openTermsAndConditions() {
+        System.out.println("Opening Terms & Conditions at: " + termsUrl);
     }
 }

@@ -11,11 +11,19 @@ public class RegistrationChecker {
     public boolean checkUserExists(String nicPassport, String accountNumber) {
         System.out.println("Checking if user exists with NIC/Passport: " + nicPassport + " and Account: " + accountNumber);
         int userExists =  dbManager.executeQuery("Checking Whether User Already Exists[" + nicPassport + "|"+ accountNumber + "]");
-        return true;
+        return userExists > 0;
     }
 
     public User getUserDetailsIfRegistered(String nicPassport) {
         System.out.println("Fetching user details for NIC/Passport: " + nicPassport);
         return profileManager.getUserByNicPassport(nicPassport);
+    }
+
+    public void setDbManager(DatabaseManager dbManager) {
+        this.dbManager = dbManager;
+    }
+
+    public void setProfileManager(UserProfileManager profileManager) {
+        this.profileManager = profileManager;
     }
 }

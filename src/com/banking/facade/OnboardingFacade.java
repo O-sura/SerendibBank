@@ -7,6 +7,7 @@ import com.banking.validation.ValidationService;
 import com.banking.manager.OTPManager;
 import com.banking.notification.NotificationService;
 import com.banking.service.VerificationService;
+import com.banking.service.LanguageSelector;
 import com.banking.service.TermsAndConditionsProvider;
 import com.banking.registration.RegistrationChecker;
 import com.banking.registration.LoginRedirector;
@@ -25,15 +26,30 @@ public class OnboardingFacade {
 
     public void startOnboarding() {
         System.out.println("Starting onboarding process...");
+        selectPreferedLanguage("English");
+        selectOnboardingType("Serendib Account");
         displayTermsAndConditions();
         acceptTermsAndConditions();
-        validateIdentity("123456789");
+        validateIdentity("987654321V");
         validateAccount("ACC123456");
-        checkExistingRegistration("123456789", "ACC123456");
+        checkExistingRegistration("987654321V", "ACC123456");
         sendOTP();
         verifyOTP("123456");
+        selectVerificationMethod("Call Centre");
         createUserProfile("user123", "password123");
         completeOnboarding();
+    }
+
+    public void selectPreferedLanguage(String language) {
+        System.out.println("Selecting language: " + language);
+        LanguageSelector.selectLanguage(language);
+    }
+
+    public void selectOnboardingType(String type) {
+        if (!type.equals("Serendib Account")) {
+            throw new IllegalArgumentException("Invalid onboarding type");
+        }
+        System.out.println("Onboarding with type: " + type);
     }
 
     public void displayTermsAndConditions() {
@@ -72,12 +88,12 @@ public class OnboardingFacade {
 
     public void sendOTP() {
         System.out.println("Sending OTP...");
-        otpManager.generateOTP();
+        otpManager.generateOTP("user123");
     }
 
     public void verifyOTP(String otp) {
         System.out.println("Verifying OTP: " + otp);
-        otpManager.validateOTP(otp);
+        otpManager.validateOTP("user123",otp);
     }
 
     public void selectVerificationMethod(String method) {
@@ -111,5 +127,41 @@ public class OnboardingFacade {
     public void completeOnboarding() {
         System.out.println("Onboarding completed.");
         redirectToLogin();
+    }
+
+    public void setValidationService(ValidationService validationService) {
+        this.validationService = validationService;
+    }
+
+    public void setOtpManager(OTPManager otpManager) {
+        this.otpManager = otpManager;
+    }
+
+    public void setProfileManager(UserProfileManager profileManager) {
+        this.profileManager = profileManager;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
+
+    public void setVerificationService(VerificationService verificationService) {
+        this.verificationService = verificationService;
+    }
+
+    public void setTermsProvider(TermsAndConditionsProvider termsProvider) {
+        this.termsProvider = termsProvider;
+    }
+
+    public void setRegistrationChecker(RegistrationChecker registrationChecker) {
+        this.registrationChecker = registrationChecker;
+    }
+
+    public void setLoginRedirector(LoginRedirector loginRedirector) {
+        this.loginRedirector = loginRedirector;
+    }
+
+    public void setOtpConfigManager(OTPConfigurationManager otpConfigManager) {
+        this.otpConfigManager = otpConfigManager;
     }
 }

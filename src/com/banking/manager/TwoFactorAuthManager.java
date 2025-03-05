@@ -13,13 +13,13 @@ public class TwoFactorAuthManager {
     }
 
     public void initiateOTPVerification(User user) {
-        String otp = otpManager.generateOTP();
+        String otp = otpManager.generateOTP(user.getUsername());
         otpManager.deliverOTP(user, otp);
         System.out.println("OTP sent to user: " + user.getUsername());
     }
 
-    public boolean verifyOTP(String otp) {
-        boolean isValid = otpManager.validateOTP(otp);
+    public boolean verifyOTP(User user, String otp) {
+        boolean isValid = otpManager.validateOTP(user.getUsername(),otp);
         if (isValid) {
             System.out.println("OTP verification successful.");
         } else {

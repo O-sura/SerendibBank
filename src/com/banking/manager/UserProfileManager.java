@@ -1,16 +1,32 @@
 package com.banking.manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.banking.domain.User;
 import com.banking.observer.UserStatusObserver;
+import com.banking.util.DatabaseManager;
 
 public class UserProfileManager {
     private List<UserStatusObserver> observers = new ArrayList<>();
+    private DatabaseManager dbManager = DatabaseManager.getInstance();
+
+    private boolean checkUserExistsWithUsername(String username) {
+        return dbManager.executeQuery("SELECT * FROM users WHERE username = '" + username + "'") > 0;
+    }
+
+    private List<String> suggestUsernames(String username) {
+        return Arrays.asList(username + "123", username + "456", username + "789");
+    }
 
     public void createProfile(User user) {
-        System.out.println("Creating profile for user: " + user.getUsername());
+        if (checkUserExistsWithUsername(user.getUsername())) {
+            List<String> suggestions = suggestUsernames(user.getUsername());
+            System.out.println("Username taken. Suggested alternatives: " + suggestions);
+        } else {
+            System.out.println("Creating profile for: " + user.getUsername());
+        }
     }
 
     public void updateStatus(User user, String newStatus) {
