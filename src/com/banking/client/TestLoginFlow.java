@@ -2,6 +2,7 @@ package com.banking.client;
 
 import com.banking.domain.User;
 import com.banking.facade.LoginFacade;
+import com.banking.facade.OnboardingFacade.Method;
 import com.banking.manager.OTPManager;
 import com.banking.manager.SecurityManager;
 import com.banking.manager.TwoFactorAuthManager;
@@ -20,7 +21,7 @@ public class TestLoginFlow {
         AuthenticationService authService = new AuthenticationService();
         OTPManager otpManager = new OTPManager();
         NotificationService notificationService = new BasicNotificationService();
-        TwoFactorAuthManager tfaManager = new TwoFactorAuthManager(otpManager, notificationService);
+        TwoFactorAuthManager tfaManager = new TwoFactorAuthManager(otpManager, notificationService, null);
         SecurityManager securityManager = SecurityManager.getInstance();
         DashboardProvider dashboardProvider = new DashboardProvider();
         
@@ -53,9 +54,10 @@ public class TestLoginFlow {
         
         // Test password reset flow
         System.out.println("=== Testing Password Reset Flow ===");
-        loginFacade.initiatePasswordReset("testuser");
-        loginFacade.validatePasswordResetToken("reset_token_123");
-        loginFacade.resetPassword("reset_token_123", "newPassword456");
+        Method resetMethod = new Method("Email", "testuser@gmail.com");
+        loginFacade.initiatePasswordReset(resetMethod);
+        loginFacade.validatePasswordResetToken("reset_token@123");
+        loginFacade.resetPassword("newPassword456", "newPassword456");
         System.out.println("=== Password Reset Flow Test Completed ===");
     }
 }

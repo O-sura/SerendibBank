@@ -1,16 +1,12 @@
 package com.banking.client;
 
-import com.banking.domain.User;
 import com.banking.facade.OnboardingFacade;
 import com.banking.manager.OTPConfigurationManager;
 import com.banking.manager.OTPManager;
 import com.banking.manager.UserProfileManager;
-import com.banking.notification.BasicNotificationService;
-import com.banking.notification.NotificationService;
 import com.banking.registration.LoginRedirector;
 import com.banking.registration.RegistrationChecker;
 import com.banking.service.TermsAndConditionsProvider;
-import com.banking.service.VerificationService;
 import com.banking.util.DatabaseManager;
 import com.banking.validation.AccountValidationStrategy;
 import com.banking.validation.NICValidationStrategy;
@@ -25,8 +21,6 @@ public class TestRegistrationFlow {
         
         OTPManager otpManager = new OTPManager();
         UserProfileManager profileManager = new UserProfileManager();
-        NotificationService notificationService = new BasicNotificationService();
-        VerificationService verificationService = new VerificationService();
         TermsAndConditionsProvider termsProvider = new TermsAndConditionsProvider();
         
         // Initialize registration checker with its dependencies
@@ -43,8 +37,7 @@ public class TestRegistrationFlow {
         onboardingFacade.setValidationService(validationService);
         onboardingFacade.setOtpManager(otpManager);
         onboardingFacade.setProfileManager(profileManager);
-        onboardingFacade.setNotificationService(notificationService);
-        onboardingFacade.setVerificationService(verificationService);
+
         onboardingFacade.setTermsProvider(termsProvider);
         onboardingFacade.setRegistrationChecker(registrationChecker);
         onboardingFacade.setLoginRedirector(loginRedirector);

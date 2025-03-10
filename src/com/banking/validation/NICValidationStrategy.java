@@ -4,6 +4,7 @@ public class NICValidationStrategy implements ValidationStrategy {
     @Override
     public boolean validate(String nic) {
         // Placeholder logic for NIC validation
+        System.out.println("[+]Validating NIC");
         return nic != null && nic.matches("\\d{9}[Vv]?"); // Example NIC validation
     }
 

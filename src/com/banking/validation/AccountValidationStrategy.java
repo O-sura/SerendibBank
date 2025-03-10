@@ -4,6 +4,7 @@ public class AccountValidationStrategy implements ValidationStrategy {
     @Override
     public boolean validate(String accountNumber) {
         // Placeholder logic for Account Number validation
+        System.out.println("[+]Validating Account Number");
         return accountNumber != null && accountNumber.matches("\\d{10}"); // Example Account Number validation
     }
 

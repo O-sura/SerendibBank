@@ -5,14 +5,17 @@ import java.util.Date;
 public class User {
     private String username;
     private String password;
-    private String displayName;
     private String NIC;
     private String PassportNo;
+    private String prefferedLanguage;
+    private String accountNumber;
     private String mobileNumber;
     private String email;
     private String status;
     private boolean termsAccepted;
     private boolean isRegistered;
+    private boolean isVerified;
+    private boolean isLocked = false;
     private String preferredOtpMethod;
     private String passwordResetToken;
     private Date tokenExpiryDate;
@@ -20,14 +23,15 @@ public class User {
     private User(UserBuilder builder) {
         this.username = builder.username;
         this.password = builder.password;
-        this.displayName = builder.displayName;
         this.NIC = builder.NIC;
         this.PassportNo = builder.PassportNo;
+        this.accountNumber = builder.accountNumber;
         this.mobileNumber = builder.mobileNumber;
         this.email = builder.email;
         this.status = builder.status;
         this.termsAccepted = builder.termsAccepted;
-        this.isRegistered = builder.isRegistered;
+        this.isVerified = builder.isVerified;
+        this.prefferedLanguage = builder.prefferedLanguage;
         this.preferredOtpMethod = builder.preferredOtpMethod;
     }
 
@@ -39,8 +43,34 @@ public class User {
         this.username = username;
     }
 
-    public void setDisplayName(String displayName){
-        this.displayName = displayName;
+    public String getPrefferedLanguage() {
+        return prefferedLanguage;
+    }
+
+    public void setPrefferedLanguage(String prefferedLanguage) {
+        this.prefferedLanguage = prefferedLanguage;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        System.out.println("Setting user lock status to: " + locked);
+        this.isLocked = locked;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    //getters and setters for password
+    public String getPassword(){
+        return password;
     }
 
     public void setNicNo(String NICNo){
@@ -94,6 +124,14 @@ public class User {
         this.isRegistered = registered;
     }
 
+    public boolean getVerificationStatus() {
+        return isVerified;
+    }
+
+    public void setVerificationStatus(boolean status) {
+        this.isVerified = status;
+    }
+
     public String getPreferredOtpMethod() {
         return preferredOtpMethod;
     }
@@ -128,14 +166,15 @@ public class User {
     public static class UserBuilder {
         private String username;
         private String password;
-        private String displayName;
         private String NIC;
         private String PassportNo;
         private String mobileNumber;
+        private String accountNumber;
         private String email;
         private String status;
         private boolean termsAccepted;
-        private boolean isRegistered;
+        private boolean isVerified;
+        private String prefferedLanguage;
         private String preferredOtpMethod;
     
         public UserBuilder withUsername(String username) {
@@ -148,11 +187,6 @@ public class User {
             return this;
         }
     
-        public UserBuilder withDisplayName(String displayName) {
-            this.displayName = displayName;
-            return this;
-        }
-    
         public UserBuilder withNic(String NICNo) {
             this.NIC = NICNo;
             return this;
@@ -160,6 +194,16 @@ public class User {
     
         public UserBuilder withPassportNo(String PassportNo) {
             this.PassportNo = PassportNo;
+            return this;
+        }
+
+        public UserBuilder withAccountNumber(String accountNumber) {
+            this.accountNumber = accountNumber;
+            return this;
+        }
+
+        public UserBuilder witPrefferedLanguage(String prefferedLanguage) {
+            this.prefferedLanguage = prefferedLanguage;
             return this;
         }
     
@@ -183,8 +227,8 @@ public class User {
             return this;
         }
     
-        public UserBuilder withRegistered(boolean registered) {
-            this.isRegistered = registered;
+        public UserBuilder withVerified(boolean verified) {
+            this.isVerified = verified;
             return this;
         }
     
