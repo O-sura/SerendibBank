@@ -1,6 +1,5 @@
 package com.banking.client;
 
-import com.banking.domain.User;
 import com.banking.facade.LoginFacade;
 import com.banking.facade.OnboardingFacade.Method;
 import com.banking.manager.OTPManager;
