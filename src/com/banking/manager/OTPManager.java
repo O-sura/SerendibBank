@@ -76,7 +76,6 @@ public class OTPManager {
             notificationService = notificationFactory.createCombineNotification();
             // Send to both, starting with mobile (as per requirement)
             notificationService.send(smsCredential, "Your OTP is: " + otp);
-            notificationService.send(emailCredential, "Your OTP is: " + otp);
         } else if (hasSMS) {
             System.out.println("Using mobile notification service");
             notificationService = notificationFactory.createMobileNotification();

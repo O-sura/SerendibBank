@@ -16,7 +16,7 @@ public class UserProfileManager {
     private UserSessionManager sessionManager = UserSessionManager.getInstance();
 
     private boolean checkUserExistsWithUsername(String username) {
-        return dbManager.executeQuery("SELECT * FROM users WHERE username = '" + username + "'") > 0;
+        return dbManager.executeQuery("Checking whether a user exists with the username: " +  username + "'") > 0;
     }
 
     private List<String> suggestUsernames(String username) {
@@ -30,9 +30,9 @@ public class UserProfileManager {
             return false;
         } 
         
-        //check whether the password contains one uppercase letter, one lowercase letter, one digit, and one special character
-        if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
-            System.out.println("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character");
+        // check whether the password contains at least one uppercase letter, one lowercase letter, one digit, and one special character
+        if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%\\\\*\\?&])[A-Za-z\\d@$!%\\\\*\\?&]+$")) {
+            System.out.println("Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character");
             return false;
         }
         
@@ -50,7 +50,7 @@ public class UserProfileManager {
                 .withStatus("active")
                 .build();
 
-        dbManager.executeQuery("Adding new user " + newUser +" to the database");
+        dbManager.executeQuery("Adding new user " + newUser.getUsername() +" to the database");
         return true;
     }
 

@@ -46,7 +46,7 @@ public class TestRegistrationFlow {
         // Start the onboarding process
         System.out.println("=== Starting Onboarding Flow Test ===");
         onboardingFacade.startOnboarding();
-        System.out.println("=== Onboarding Flow Test Completed ===");
+        System.out.println("=== Onboarding Flow Test End ===");
     }
 }
 

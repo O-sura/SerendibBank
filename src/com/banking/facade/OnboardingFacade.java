@@ -92,7 +92,7 @@ public class OnboardingFacade {
             return;
         } 
 
-        if(createUserProfile("user123", "password123")){
+        if(createUserProfile("user123", "jwh88273l@jwdjDWDLINLwhd@")){
             System.out.println("User profile created successfully.");
         }
         else{

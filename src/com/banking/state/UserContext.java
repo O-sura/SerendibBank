@@ -15,6 +15,7 @@ public class UserContext {
     public UserContext() {
         this.sessionStartTime = System.currentTimeMillis();
         this.sessionId = generateSessionId();
+        this.sessionData = new java.util.HashMap<>();
     }
     
     private String generateSessionId() {
