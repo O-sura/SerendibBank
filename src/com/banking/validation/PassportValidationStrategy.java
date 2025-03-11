@@ -4,6 +4,7 @@ public class PassportValidationStrategy implements ValidationStrategy {
     @Override
     public boolean validate(String passport) {
         // Placeholder logic for Passport validation
+        System.out.println("[+]Validating Passport Number");
         return passport != null && passport.matches("[A-Za-z]{2}\\d{7}"); // Example Passport validation
     }
 

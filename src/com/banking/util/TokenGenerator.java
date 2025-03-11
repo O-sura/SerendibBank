@@ -14,8 +14,9 @@ public class TokenGenerator {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
         messageDigest.update(timeStamp.getBytes());
         String stringHash = new String(messageDigest.digest());
-        this.sentToken = stringHash;
-        return stringHash;
+        // this.sentToken = stringHash;
+        this.sentToken = "reset_token@123"; //Hardcoded just for the sake of implementation :)
+        return sentToken;
     }
 
     public Boolean validateToken(String token) {

@@ -2,7 +2,7 @@ package com.banking.service;
 
 public class TermsAndConditionsProvider {
     private String termsUrl = "https://serandib.com/terms";;
-    private String termsContent;
+    private String termsContent = "Copyritght 2025 Serendib Bank. All rights reserved.";
 
     public String getTermsAndConditions() {
         System.out.println("Fetching terms and conditions...");
@@ -16,6 +16,7 @@ public class TermsAndConditionsProvider {
 
     public void loadTermsFromUrl() {
         System.out.println("Loading terms from URL: " + termsUrl);
+        this.termsContent = "[Web]Copyritght 2025 Serendib Bank. All rights reserved.";
     }
 
     public boolean isLatestVersion() {
@@ -23,7 +24,4 @@ public class TermsAndConditionsProvider {
         return true;
     }
 
-    public void openTermsAndConditions() {
-        System.out.println("Opening Terms & Conditions at: " + termsUrl);
-    }
 }

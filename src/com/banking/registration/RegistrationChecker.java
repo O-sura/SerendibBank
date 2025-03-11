@@ -8,9 +8,9 @@ public class RegistrationChecker {
     private DatabaseManager dbManager;
     private UserProfileManager profileManager;
 
-    public boolean checkUserExists(String nicPassport, String accountNumber) {
-        System.out.println("Checking if user exists with NIC/Passport: " + nicPassport + " and Account: " + accountNumber);
-        int userExists =  dbManager.executeQuery("Checking Whether User Already Exists[" + nicPassport + "|"+ accountNumber + "]");
+    public boolean checkUserExists(String nicPassport) {
+        System.out.println("Checking if user exists with NIC/Passport: " + nicPassport);
+        int userExists =  dbManager.executeQuery("Checking Whether User Already Exists with credentials: [" + nicPassport + "]");
         return userExists > 0;
     }
 
