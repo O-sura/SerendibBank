@@ -33,6 +33,6 @@ public class TwoFactorAuthManager {
             System.out.println("Two-Factor authentication OTP verification failed.");
             return false;
         }
-        return true; //Hardcoded just for the sake of implementation :)
+        return true; //Hardcoded just for the implementation
     }
 }

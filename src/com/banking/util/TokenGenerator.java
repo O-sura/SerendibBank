@@ -15,12 +15,11 @@ public class TokenGenerator {
         messageDigest.update(timeStamp.getBytes());
         String stringHash = new String(messageDigest.digest());
         // this.sentToken = stringHash;
-        this.sentToken = "reset_token@123"; //Hardcoded just for the sake of implementation :)
+        this.sentToken = "reset_token@123"; //Hardcoded just for the implementation
         return sentToken;
     }
 
     public Boolean validateToken(String token) {
-        //check whether 
         if(token.equals(this.sentToken)) {
             return true;
         }
